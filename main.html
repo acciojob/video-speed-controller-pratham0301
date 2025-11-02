@@ -2,74 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Custom Video Player</title>
-  <style>
-    .video-container {
-      position: relative;
-      width: 765px;
-      margin: auto;
-      background: #222;
-    }
-    #video {
-      width: 100%;
-      display: block;
-    }
-    .controls {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 5px;
-      padding: 10px;
-      background: rgba(30,30,30,0.85);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .progress {
-      flex: 1 1 auto;
-      height: 8px;
-      background: #eee;
-      margin: 0 8px;
-      border-radius: 4px;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    .progress__filled {
-      background: #09f;
-      height: 100%;
-      width: 0%;
-      transition: width 0.2s;
-    }
-    .speed-bar {
-      min-width: 38px;
-      color: #ffa;
-    }
-    button, input[type=range], input[type=number] {
-      background: #444;
-      border: none;
-      color: #fff;
-      padding: 4px 10px;
-      border-radius: 4px;
-    }
-    button:active { background: #09f; }
-    #toggle { font-size: 1.2em; }
-  </style>
+  <title>Video Speed Scrubber</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="video-container">
-    <video id="video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
-    <div class="controls">
-      <button id="toggle">&#9658;</button>
-      <div class="progress" id="progress">
-        <div class="progress__filled" id="progressFilled"></div>
+  <div class="player">
+    <video class="player__video viewer" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+    <div class="player__controls">
+      <div class="progress">
+        <div class="progress__filled"></div>
       </div>
-      <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
-      <span class="speed-bar" id="speedBar">1X</span>
-      <input type="number" id="playbackSpeed" value="1" step="0.1" min="0.2" max="3">
-      <button id="rewind">10s</button>
-      <button id="skip">25s</button>
+      
+      <div class="controls-row">
+        <div class="left-controls">
+          <button class="player__button toggle" title="Toggle Play">►</button>
+          <div class="skip-buttons">
+            <button class="player__button rewind" data-skip="-10">« 10s</button>
+            <button class="player__button" data-skip="25">25s »</button>
+          </div>
+        </div>
+        
+        <div class="right-controls">
+          <span class="player__slider-label">Volume</span>
+          <input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1">
+          <span class="player__slider-label">Speed</span>
+          <input type="range" name="playbackRate" class="player__slider" min="0.5" max="2" step="0.1" value="1">
+        </div>
+      </div>
     </div>
   </div>
-  <script src="scripts.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
