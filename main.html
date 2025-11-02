@@ -3,19 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Video Speed Scrubber</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    .wrapper { max-width: 780px; margin: auto; }
+    .progress { height: 8px; background: #eee; margin: 10px 0; width: 100%; }
+    .progress__filled { background: #09f; height: 100%; width: 0%; }
+    .speed-bar { display: inline-block; min-width: 40px; }
+    button, input[type=range], input[type=number] { margin: 8px 2px; }
+  </style>
 </head>
 <body>
-
   <div class="wrapper">
-    <video class="flex" width="765" height="430" src="https://www.w3schools.com/html/mov_bbb.mp4" controls></video>
+    <video class="flex" width="765" height="410" id="video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
     <div class="speed">
-      <div class="speed-bar">1×</div>
+      <div class="speed-bar" id="speedBar">1X</div>
     </div>
+    <div class="progress">
+      <div class="progress__filled" id="progressFilled"></div>
+    </div>
+    <button id="toggle">►</button>
+    <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+    <input type="number" id="playbackSpeed" value="1" step="0.1" min="0.2" max="3">
+    <button id="rewind">&laquo;10s</button>
+    <button id="skip">&raquo;25s</button>
   </div>
-
-<script  src="./script.js">
-  //Your code goes here
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
